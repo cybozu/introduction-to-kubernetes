@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-first-pod
+  labels:
+    component: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest

@@ -1,0 +1,10 @@
+= Exercise
+
+. Kubernetes の公式チュートリアルにしたがってゲストブックをデプロイしてください。
+  https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
+
+. frontend に対して liveness probe と readiness probe を設定してください。ヘルスチェック用のエンドポイントは `/` を使ってください。
+
+. frontend の Pod に `kubectl exec` で入って `killall apache2` してみましょう。Pod はそのあとどのような挙動しましたか？
+
+. frontend の liveness probe が必ず失敗するように frontend のマニフェストを書き換えて `kubectl apply` してください (例えば Pod の `command` に `sleep` などを指定して `apache2` が起動しないようにするなど)。このとき liveness probe が失敗した Pod を describe するとどのように表示されますか？ また、この状況で `kubectl rollout status deployment frontend` と `kubectl rollout undo deployment frontend` を実行してみてください。
