@@ -5,6 +5,15 @@
 
 この資料は 2019 年にサイボウズの研修のために用意したものです。
 
+## 内容
+
+- [トップページ](https://cybozu.github.io/introduction-to-kubernetes/)
+    - [Introduction to Kubernetes](https://cybozu.github.io/introduction-to-kubernetes/introduction-to-kubernetes.html)
+        - Kubernetes を使って簡単なアプリケーションをデプロイするための基本的な機能を説明します
+    - [More Introduction to Kubernetes](https://cybozu.github.io/introduction-to-kubernetes/more-introduction-to-kubernetes.html)
+        - ヘルスチェックやリソース制限など重要な機能を説明します
+    - [Exercise](https://cybozu.github.io/introduction-to-kubernetes/exercise.html)
+
 ## ライセンス
 
 この資料は MIT Lisence の下で配布されています。
