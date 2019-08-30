@@ -15,3 +15,8 @@
 * link:more-introduction-to-kubernetes.html[More Introduction to Kubernetes]
 ** ヘルスチェックやリソース制限など重要な機能を説明します
 * link:exercise.html[Exercise]
+
+== Misc
+
+- link:https://github.com/cybozu/introduction-to-kubernetes[GitHub リポジトリ]
+- この資料は MIT License の下で配布されています。
