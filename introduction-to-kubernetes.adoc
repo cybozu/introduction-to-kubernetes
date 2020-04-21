@@ -147,7 +147,7 @@ Pod のデプロイに成功したら `kubectl exec` でコンテナの中に入
 curl で `localhost:80` にアクセスすると nginx が走っていることが確認できます。
 
 ....
-$ kubectl exec -it my-first-pod bash
+$ kubectl exec -it my-first-pod -- bash
 (my-first-pod)# apt update && apt install -y curl
 (my-first-pod)# curl -i localhost:80
 HTTP/1.1 200 OK
@@ -206,7 +206,7 @@ my-first-pod   1/1     Running   0          115m   172.17.0.5   minikube   <none
 次に、bastion に `kubectl exec` で入って nginx に HTTP リクエストを投げてみましょう。
 
 ....
-$ kubectl exec -it bastion bash
+$ kubectl exec -it bastion -- bash
 (bastion)# apt update && apt install -y curl
 (bastion)# curl -i http://172.17.0.5/
 HTTP/1.1 200 OK
@@ -263,7 +263,7 @@ $ kubectl get service
 Service 名で指定した名前で nginx の Pod にアクセスできるようになっているはずです。
 
 ....
-$ kubectl exec -it bastion bash
+$ kubectl exec -it bastion -- bash
 (bastion)# curl -i http://my-first-service/
 HTTP/1.1 200 OK
 ...
