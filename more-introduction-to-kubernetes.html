@@ -665,14 +665,14 @@ spec:
         image: nginx:1.16
       affinity: <i class="conum" data-value="1"></i><b>(1)</b>
         podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: "component"
-                    operator: In
-                    values:
-                    - "nginx"
-              topologyKey: "kubernetes.io/hostname"</code></pre>
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: component
+                operator: In
+                values:
+                - "nginx"
+            topologyKey: "kubernetes.io/hostname"</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -684,12 +684,16 @@ spec:
 </table>
 </div>
 <div class="paragraph">
-<p>この設定をしておくと、Kubernetes がこの Pod をデプロイするときに <code>component: nginx</code> というラベルを持つ Pod がいないノードにデプロイしようとします。
-もしそのようなノードが存在しない場合は、Anti Affinity の設定を無視してデプロイします。</p>
+<p>この設定をしておくと、Kubernetes がこの Pod をデプロイするときに <code>component: nginx</code> というラベルを持つ Pod がいないノードにデプロイされます。
+これにより、ノードが一台死亡したとしても nginx の Pod がひとつ以上生き残ることが保証されます。</p>
 </div>
 <div class="paragraph">
-<p><code>preferredDuringSchedulingIgnoredDuringExecution</code> の代わりに <code>requiredDuringSchedulingIgnoredDuringExecution</code> を指定すると、Affinity の条件を満たせない場合に Pod がデプロイされません。
-どうしても異なるノードにデプロイしたい場合はこちらを使うとよいでしょう。</p>
+<p>条件を満たすノードが存在しないときは、Pod はデプロイされず、条件を満たすノードが出現するまで Pending 状態になります。
+長時間 Pending になっている Pod が存在しないかどうかは監視項目に含めておくとよいでしょう。</p>
+</div>
+<div class="paragraph">
+<p>状況によっては Affinity の条件を満たせない場合でもとにかくデプロイしたい場合もあるでしょう。
+<code>requiredDuringSchedulingIgnoredDuringExecution</code> の代わりに <code>preferredDuringSchedulingIgnoredDuringExecution</code> を指定すると、Affinity の条件を満たせない場合は条件を無視してデプロイします。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -746,12 +750,12 @@ PDB を指定すると、Kubernetes のツールがノードをシャットダ�
 <pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
-  name: frontend-pdb
+  name: nginx-pdb
 spec:
   minAvailable: 1
   selector:
     matchLabels:
-      app: guestbook</code></pre>
+      component: nginx</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -767,7 +771,7 @@ spec:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-08-30 14:41:22 +0900
+Last updated 2020-06-15 12:18:56 +0900
 </div>
 </div>
 </body>
