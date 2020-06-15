@@ -1223,21 +1223,14 @@ $ open http://(IPアドレス):30000/</pre>
 <div class="paragraph">
 <p>また、<code>-f</code> オプションをつけると <code>tail -f</code> のように新しいログを逐次垂れ流してくれます。</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p><code>kubectl logs</code> は一つのコンテナのログしか表示してくれません。
-しかし、実際に Kubernetes を使っていると複数のコンテナのログを一度に見たい場合があります。
-そういう場合は <a href="https://github.com/wercker/stern">stern</a> が便利です。</p>
+<p>複数のコンテナのログを一度に見たいときは <code>-l</code> オプションを使います。
+<code>-l</code> は指定したラベルを持つコンテナのログを出力します。</p>
 </div>
-</td>
-</tr>
-</table>
+<div class="literalblock">
+<div class="content">
+<pre>$ kubectl logs -l component=nginx</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1267,7 +1260,7 @@ $ open http://(IPアドレス):30000/</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-15 13:32:04 +0900
+Last updated 2020-06-15 13:42:13 +0900
 </div>
 </div>
 </body>
