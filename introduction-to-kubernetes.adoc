@@ -549,12 +549,12 @@ $ kubectl logs nginx-deployment-6fb8fbbfc8-9nblk
 
 また、`-f` オプションをつけると `tail -f` のように新しいログを逐次垂れ流してくれます。
 
-[NOTE]
-====
-`kubectl logs` は一つのコンテナのログしか表示してくれません。
-しかし、実際に Kubernetes を使っていると複数のコンテナのログを一度に見たい場合があります。
-そういう場合は https://github.com/wercker/stern[stern] が便利です。
-====
+複数のコンテナのログを一度に見たいときは `-l` オプションを使います。
+`-l` は指定したラベルを持つコンテナのログを出力します。
+
+....
+$ kubectl logs -l component=nginx
+....
 
 === ポートフォワードする
 
