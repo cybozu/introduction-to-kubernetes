@@ -764,8 +764,12 @@ HTTP/1.1 200 OK
 </div>
 <div class="paragraph">
 <p>そこで、普通他の Pod との通信するときには <strong>Service</strong> というオブジェクトを使います。
-Service を使うと「ある特定の Pod」ではなく「特定の <strong>ラベル</strong> を持つ Pod のどれか」にアクセスすることができます。
-ラベルというのは、上の nginx の例だと <code>component: nginx</code> の部分です。</p>
+Service を使うと「ある特定の Pod」ではなく「特定の <strong>ラベル</strong> を持つ Pod のどれか」にアクセスすることができます。</p>
+</div>
+<div class="paragraph">
+<p>ラベルというのは、上の nginx の例だと <code>component: nginx</code> の部分です。
+ここでの <code>component</code> や <code>nginx</code> が特別な意味を持っているわけではなく、利用者が好きな文字列を指定できます。
+例えば <code>foobar: v2000</code> や <code>cybozu: kintone</code> もラベルとして valid です。</p>
 </div>
 <div class="paragraph">
 <p>Service はちょっと理解しにくい概念なので、詳しい説明より前にまず動作を見てみましょう。
@@ -1263,7 +1267,7 @@ $ open http://(IPアドレス):30000/</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-21 16:44:16 +0900
+Last updated 2020-06-15 13:32:04 +0900
 </div>
 </div>
 </body>
