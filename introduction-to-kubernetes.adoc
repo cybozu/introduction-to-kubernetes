@@ -5,7 +5,7 @@
 
 Kubernetes 入門へようこそ。
 
-この文書は「Kubernetes という名前ぐらいは知っているけど、実際には使ったことがない、何ができるのかよく知らない」という人を対象に、Kubernetes の最も基本的なオブジェクトである Pod, Service, Deployment を解説します。この文書を読めば、Kubernetes 上に単純な Web アプリケーションをデプロイできるようになるはずです。
+この文書は「Kubernetes という名前ぐらいは知っているけど、実際には使ったことがない、何ができるのかよく知らない」という人を対象に、Kubernetes の最も基本的なリソースである Pod, Service, Deployment を解説します。この文書を読めば、Kubernetes 上に単純な Web アプリケーションをデプロイできるようになるはずです。
 
 この文書は Docker コンテナの知識を仮定しています。Docker をよく知らない人は先に Docker について勉強しておくことをおすすめします。
 
@@ -56,7 +56,7 @@ image::images/dashboard.png[width=500px]
 
 == Kubernetes 上にコンテナをデプロイしてみる
 
-Kubernetes にデプロイできる最小単位は **Pod** と呼ばれるオブジェクトです。
+Kubernetes にデプロイできる最小単位は **Pod** と呼ばれるリソースです。
 Pod はひとつ以上のコンテナをまとめたものです。
 同じ Pod に属するコンテナは常に同じノードに配置されます。
 また、同じ Pod に属するコンテナはホスト名やIPアドレスを共有します。
@@ -225,7 +225,7 @@ Kubernetes クラスタは動的な環境です。
 このときアプリケーションが Pod の IP アドレスに直接アクセスしていた場合、アクセス先の Pod が消滅していることがあります。
 そのため、特定の Pod ではなく「所望の機能を提供する Pod のどれか」と通信するための安定した(=変化しない)エンドポイントが欲しくなります。
 
-そこで、普通他の Pod との通信するときには **Service** というオブジェクトを使います。
+そこで、普通他の Pod との通信するときには **Service** というリソースを使います。
 Service を使うと「ある特定の Pod」ではなく「特定の **ラベル** を持つ Pod のどれか」にアクセスすることができます。
 
 ラベルというのは、上の nginx の例だと `component: nginx` の部分です。
@@ -293,7 +293,7 @@ Kubernetes におけるラベルは、キーと値の組です。
 
 前の節では nginx を一台立ち上げました。
 実際の運用環境では冗長性やスケーラビリティのために一つのサービスを複数台の Pod で構成することが一般的です。
-ここでは Kubernetes の **ReplicaSet** というオブジェクトを利用して nginx を指定した台数だけ立ち上げてみましょう。
+ここでは Kubernetes の **ReplicaSet** というリソースを利用して nginx を指定した台数だけ立ち上げてみましょう。
 
 次の YAML を apply してみましょう。
 
@@ -336,7 +336,7 @@ $ kubectl get replicaset
 $ kubectl get pod
 ....
 
-ReplicaSet は「`selector` にマッチする Pod の数」が「`replicas` に指定した数」になるように Pod を自動的にデプロイしたり削除したりするオブジェクトです。
+ReplicaSet は「`selector` にマッチする Pod の数」が「`replicas` に指定した数」になるように Pod を自動的にデプロイしたり削除したりするリソースです。
 
 この ReplicaSet が apply されたとき、`component: nginx` というラベルを持っていた Pod は `my-first-pod` ひとつだけでした。
 `replicas` には３が指定してあるため、２つ足りません。
@@ -375,8 +375,8 @@ $ kubectl get pod
 そこで、nginx を一台落として更新して立ち上げる、という作業を３回行います。
 こうすると常に nginx が２台以上稼働している状況をキープできるため、サービス断が発生しません。
 
-Kubernetes でローリングアップデートを行うには **Deployment** というオブジェクトを利用します。
-Deployment は ReplicaSet と似たオブジェクトですが、ReplicaSet と違ってアップデートがサポートされています。
+Kubernetes でローリングアップデートを行うには **Deployment** というリソースを利用します。
+Deployment は ReplicaSet と似たリソースですが、ReplicaSet と違ってアップデートがサポートされています。
 Deployment の動きは少し複雑なのでじっくり説明します。
 
 更新前の nginx のバージョン(仮に v1 と呼びます)と更新後のバージョン(v2 と呼びます)があるとします。

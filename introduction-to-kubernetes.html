@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Kubernetes 入門へようこそ。</p>
 </div>
 <div class="paragraph">
-<p>この文書は「Kubernetes という名前ぐらいは知っているけど、実際には使ったことがない、何ができるのかよく知らない」という人を対象に、Kubernetes の最も基本的なオブジェクトである Pod, Service, Deployment を解説します。この文書を読めば、Kubernetes 上に単純な Web アプリケーションをデプロイできるようになるはずです。</p>
+<p>この文書は「Kubernetes という名前ぐらいは知っているけど、実際には使ったことがない、何ができるのかよく知らない」という人を対象に、Kubernetes の最も基本的なリソースである Pod, Service, Deployment を解説します。この文書を読めば、Kubernetes 上に単純な Web アプリケーションをデプロイできるようになるはずです。</p>
 </div>
 <div class="paragraph">
 <p>この文書は Docker コンテナの知識を仮定しています。Docker をよく知らない人は先に Docker について勉強しておくことをおすすめします。</p>
@@ -534,7 +534,7 @@ Kubernetes クラスタの状況が GUI で確認できるので、立ち上げ�
 <h2 id="_kubernetes_上にコンテナをデプロイしてみる">Kubernetes 上にコンテナをデプロイしてみる</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Kubernetes にデプロイできる最小単位は <strong>Pod</strong> と呼ばれるオブジェクトです。
+<p>Kubernetes にデプロイできる最小単位は <strong>Pod</strong> と呼ばれるリソースです。
 Pod はひとつ以上のコンテナをまとめたものです。
 同じ Pod に属するコンテナは常に同じノードに配置されます。
 また、同じ Pod に属するコンテナはホスト名やIPアドレスを共有します。
@@ -763,7 +763,7 @@ HTTP/1.1 200 OK
 そのため、特定の Pod ではなく「所望の機能を提供する Pod のどれか」と通信するための安定した(=変化しない)エンドポイントが欲しくなります。</p>
 </div>
 <div class="paragraph">
-<p>そこで、普通他の Pod との通信するときには <strong>Service</strong> というオブジェクトを使います。
+<p>そこで、普通他の Pod との通信するときには <strong>Service</strong> というリソースを使います。
 Service を使うと「ある特定の Pod」ではなく「特定の <strong>ラベル</strong> を持つ Pod のどれか」にアクセスすることができます。</p>
 </div>
 <div class="paragraph">
@@ -855,7 +855,7 @@ HTTP/1.1 200 OK
 <div class="paragraph">
 <p>前の節では nginx を一台立ち上げました。
 実際の運用環境では冗長性やスケーラビリティのために一つのサービスを複数台の Pod で構成することが一般的です。
-ここでは Kubernetes の <strong>ReplicaSet</strong> というオブジェクトを利用して nginx を指定した台数だけ立ち上げてみましょう。</p>
+ここでは Kubernetes の <strong>ReplicaSet</strong> というリソースを利用して nginx を指定した台数だけ立ち上げてみましょう。</p>
 </div>
 <div class="paragraph">
 <p>次の YAML を apply してみましょう。</p>
@@ -914,7 +914,7 @@ $ kubectl get pod</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>ReplicaSet は「<code>selector</code> にマッチする Pod の数」が「<code>replicas</code> に指定した数」になるように Pod を自動的にデプロイしたり削除したりするオブジェクトです。</p>
+<p>ReplicaSet は「<code>selector</code> にマッチする Pod の数」が「<code>replicas</code> に指定した数」になるように Pod を自動的にデプロイしたり削除したりするリソースです。</p>
 </div>
 <div class="paragraph">
 <p>この ReplicaSet が apply されたとき、<code>component: nginx</code> というラベルを持っていた Pod は <code>my-first-pod</code> ひとつだけでした。
@@ -968,8 +968,8 @@ $ kubectl get pod</pre>
 こうすると常に nginx が２台以上稼働している状況をキープできるため、サービス断が発生しません。</p>
 </div>
 <div class="paragraph">
-<p>Kubernetes でローリングアップデートを行うには <strong>Deployment</strong> というオブジェクトを利用します。
-Deployment は ReplicaSet と似たオブジェクトですが、ReplicaSet と違ってアップデートがサポートされています。
+<p>Kubernetes でローリングアップデートを行うには <strong>Deployment</strong> というリソースを利用します。
+Deployment は ReplicaSet と似たリソースですが、ReplicaSet と違ってアップデートがサポートされています。
 Deployment の動きは少し複雑なのでじっくり説明します。</p>
 </div>
 <div class="paragraph">
@@ -1260,7 +1260,7 @@ $ open http://(IPアドレス):30000/</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-15 13:42:13 +0900
+Last updated 2021-06-12 17:44:42 +0900
 </div>
 </div>
 </body>
