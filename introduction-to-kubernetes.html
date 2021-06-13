@@ -662,7 +662,6 @@ curl で <code>localhost:80</code> にアクセスすると nginx が走って�
 <div class="literalblock">
 <div class="content">
 <pre>$ kubectl exec -it my-first-pod -- bash
-(my-first-pod)# apt update &amp;&amp; apt install -y curl
 (my-first-pod)# curl -i localhost:80
 HTTP/1.1 200 OK
 ...</pre>
@@ -713,7 +712,7 @@ metadata:
 spec:
   containers:
   - name: bastion
-    image: debian:stretch
+    image: debian:stable
     command: ["sleep", "infinity"]</code></pre>
 </div>
 </div>
@@ -1260,7 +1259,7 @@ $ open http://(IPアドレス):30000/</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-06-12 17:44:42 +0900
+Last updated 2021-06-13 22:54:47 +0900
 </div>
 </div>
 </body>
