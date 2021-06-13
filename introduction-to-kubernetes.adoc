@@ -424,7 +424,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.15
+        image: nginx:1.20
 ----
 
 apply してみましょう。ReplicaSet のときと同様、nginx の Pod が３つデプロイされます。
@@ -439,7 +439,7 @@ $ kubectl get pod -o 'custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[
 それでは nginx のバージョンを更新してみましょう。
 
 ....
-# `image: nginx:1.15` を `image: nginx:1.16` に書き換えてください
+# `image: nginx:1.20` を `image: nginx:1.21` に書き換えてください
 $ vim nginx-deployment.yaml
 
 $ kubectl apply -f nginx-deployment.yaml
@@ -448,19 +448,19 @@ $ kubectl apply -f nginx-deployment.yaml
 $ kubectl get pod -o 'custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[*].image,PHASE:.status.phase'
 ....
 
-少し待つと全ての nginx の Pod が 1.16 に更新されたことが確認できると思います。
+少し待つと全ての nginx の Pod が 1.21 に更新されたことが確認できると思います。
 
 [NOTE]
 ====
 上の例だとアップデートが無停止で行われているのかどうかがいまいちはっきりしません。
 気になる人は以下の手順を試してみましょう。
 
-. `nginx:1.15` をイメージに指定した Deployment を apply する
+. `nginx:1.20` をイメージに指定した Deployment を apply する
 . 別のタブを開き、`bastion` のシェルの上で以下を流しておく:
 
     while true; do curl -s -i my-first-service | grep -E 'HTTP|Server'; sleep 0.1; done
 
-. 元のタブに戻り、nginx のバージョンを `1.16` に書き換えて apply する
+. 元のタブに戻り、nginx のバージョンを `1.21` に書き換えて apply する
 
 すると HTTP のアクセスが途切れることなく行われたまま nginx のバージョンが更新される様子が観測できると思います。
 

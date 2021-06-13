@@ -1038,7 +1038,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.15</code></pre>
+        image: nginx:1.20</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1057,7 +1057,7 @@ $ kubectl get pod -o 'custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[
 </div>
 <div class="literalblock">
 <div class="content">
-<pre># `image: nginx:1.15` を `image: nginx:1.16` に書き換えてください
+<pre># `image: nginx:1.20` を `image: nginx:1.21` に書き換えてください
 $ vim nginx-deployment.yaml
 
 $ kubectl apply -f nginx-deployment.yaml
@@ -1067,7 +1067,7 @@ $ kubectl get pod -o 'custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[
 </div>
 </div>
 <div class="paragraph">
-<p>少し待つと全ての nginx の Pod が 1.16 に更新されたことが確認できると思います。</p>
+<p>少し待つと全ての nginx の Pod が 1.21 に更新されたことが確認できると思います。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1083,7 +1083,7 @@ $ kubectl get pod -o 'custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>nginx:1.15</code> をイメージに指定した Deployment を apply する</p>
+<p><code>nginx:1.20</code> をイメージに指定した Deployment を apply する</p>
 </li>
 <li>
 <p>別のタブを開き、<code>bastion</code> のシェルの上で以下を流しておく:</p>
@@ -1094,7 +1094,7 @@ $ kubectl get pod -o 'custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[
 </div>
 </li>
 <li>
-<p>元のタブに戻り、nginx のバージョンを <code>1.16</code> に書き換えて apply する</p>
+<p>元のタブに戻り、nginx のバージョンを <code>1.21</code> に書き換えて apply する</p>
 </li>
 </ol>
 </div>
@@ -1259,7 +1259,7 @@ $ open http://(IPアドレス):30000/</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-06-13 22:54:47 +0900
+Last updated 2021-06-14 08:30:55 +0900
 </div>
 </div>
 </body>
