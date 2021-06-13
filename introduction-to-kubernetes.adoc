@@ -183,7 +183,7 @@ metadata:
 spec:
   containers:
   - name: bastion
-    image: debian:stretch
+    image: debian:stable
     command: ["sleep", "infinity"]
 ----
 
